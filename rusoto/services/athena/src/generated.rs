@@ -988,7 +988,7 @@ pub struct QueryExecutionStatistics {
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct QueryExecutionStatus {
     /// <p>The date and time that the query completed.</p>
-    #[serde(rename = "CompletionDateTime")]
+    #[serde(rename = "AthenaError")]
     #[serde(skip_serializing_if = "Option::is_none")]
     pub athena_error: Option<AthenaError>,
     /// <p>The date and time that the query completed.</p>
