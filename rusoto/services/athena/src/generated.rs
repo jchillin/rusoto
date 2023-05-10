@@ -1014,13 +1014,13 @@ pub struct QueryExecutionStatus {
 pub struct AthenaError {
     #[serde(rename = "ErrorCategory")]
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub error_category: Option<i32>,
+    pub error_category: Option<i8>,
     #[serde(rename = "ErrorMessage")]
     #[serde(skip_serializing_if = "Option::is_none")]
     pub error_message: Option<String>,
     #[serde(rename = "ErrorType")]
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub error_type: Option<i64>,
+    pub error_type: Option<i16>,
     #[serde(rename = "Retryable")]
     #[serde(skip_serializing_if = "Option::is_none")]
     pub retryable: Option<bool>,
