@@ -990,6 +990,10 @@ pub struct QueryExecutionStatus {
     /// <p>The date and time that the query completed.</p>
     #[serde(rename = "CompletionDateTime")]
     #[serde(skip_serializing_if = "Option::is_none")]
+    pub athena_error: Option<AthenaError>,
+    /// <p>The date and time that the query completed.</p>
+    #[serde(rename = "CompletionDateTime")]
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub completion_date_time: Option<f64>,
     /// <p><p>The state of query execution. <code>QUEUED</code> indicates that the query has been submitted to the service, and Athena will execute the query as soon as resources are available. <code>RUNNING</code> indicates that the query is in execution phase. <code>SUCCEEDED</code> indicates that the query completed without errors. <code>FAILED</code> indicates that the query experienced an error and did not complete processing. <code>CANCELLED</code> indicates that a user input interrupted query execution.</p> <note> <p>Athena automatically retries your queries in cases of certain transient errors. As a result, you may see the query state transition from <code>RUNNING</code> or <code>FAILED</code> to <code>QUEUED</code>. </p> </note></p>
     #[serde(rename = "State")]
@@ -1003,6 +1007,23 @@ pub struct QueryExecutionStatus {
     #[serde(rename = "SubmissionDateTime")]
     #[serde(skip_serializing_if = "Option::is_none")]
     pub submission_date_time: Option<f64>,
+}
+
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
+#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
+pub struct AthenaError {
+    #[serde(rename = "ErrorCategory")]
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub error_category: Option<i32>,
+    #[serde(rename = "ErrorMessage")]
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub error_message: Option<String>,
+    #[serde(rename = "ErrorType")]
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub error_type: Option<i64>,
+    #[serde(rename = "Retryable")]
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub retryable: Option<bool>,
 }
 
 /// <p>The location in Amazon S3 where query results are stored and the encryption option, if any, used for query results. These are known as "client-side settings". If workgroup settings override client-side settings, then the query uses the workgroup settings.</p>
